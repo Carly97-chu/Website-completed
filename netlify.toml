@@ -1,0 +1,12 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  # Nota: La variabile API_KEY deve essere impostata nel pannello di controllo di Netlify
+  # sotto Site Settings > Environment Variables per essere accessibile a runtime.
+  NODE_VERSION = "20"

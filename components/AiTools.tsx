@@ -40,9 +40,13 @@ const AiTools: React.FC = () => {
               key={index}
               className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-[3rem] p-10 md:p-14 overflow-hidden group hover:border-sky-500/30 transition-all duration-500 flex flex-col h-full shadow-2xl"
             >
-              {/* Background Glow */}
-              <div className={`absolute top-0 right-0 w-[500px] h-[500px] ${tool.color === 'sky' ? 'bg-sky-500/10' : 'bg-indigo-500/10'} rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:opacity-100 transition-opacity duration-500`}></div>
+              {/* Background Glow - Layer 0 */}
+              <div 
+                className={`absolute top-0 right-0 z-0 w-[500px] h-[500px] ${tool.color === 'sky' ? 'bg-sky-500/10' : 'bg-indigo-500/10'} rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:opacity-100 transition-opacity duration-500`}
+                aria-hidden="true"
+              ></div>
 
+              {/* Content Wrapper - Layer 10 (Interactive) */}
               <div className="relative z-10 flex flex-col h-full">
                 <div className="space-y-8 flex-grow">
                   <div className={`inline-flex items-center gap-3 px-4 py-1.5 rounded-full ${tool.color === 'sky' ? 'bg-sky-500/10 border-sky-500/20 text-sky-400' : 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'} border text-sm font-bold`}>
@@ -72,12 +76,13 @@ const AiTools: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Button Container - Layer 20 */}
                 <div className="pt-8">
                   <a 
                     href={tool.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-3 px-10 py-4 rounded-2xl ${tool.color === 'sky' ? 'bg-gradient-to-r from-sky-600 to-indigo-600' : 'bg-gradient-to-r from-indigo-600 to-purple-600'} text-white text-lg font-bold hover:shadow-xl transition-all active:scale-[0.98] w-fit`}
+                    className={`relative z-20 inline-flex items-center gap-3 px-10 py-4 rounded-2xl ${tool.color === 'sky' ? 'bg-gradient-to-r from-sky-600 to-indigo-600' : 'bg-gradient-to-r from-indigo-600 to-purple-600'} text-white text-lg font-bold hover:shadow-xl transition-all active:scale-[0.98] w-fit shadow-lg cursor-pointer`}
                   >
                     Launch Tool <ExternalLink className="w-5 h-5" />
                   </a>

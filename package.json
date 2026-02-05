@@ -1,8 +1,9 @@
+
 {
   "name": "carlotta-emiro-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfolio di Carlotta Emiro - AI Automation Developer",
+  "description": "Carlotta Emiro's Portfolio - AI Automation Developer",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,6 +17,7 @@
     "@google/genai": "^1.38.0"
   },
   "devDependencies": {
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.3.4"
   }
 }

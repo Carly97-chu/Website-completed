@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Linkedin, Brain, Code, Cpu, Workflow, Database, Globe, Activity, Sparkles } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
@@ -8,13 +9,7 @@ const Hero: React.FC = () => {
 
   useEffect(() => {
     const generateAiMotto = async () => {
-      // Verifica la presenza della chiave prima di procedere
-      if (!process.env.API_KEY) {
-        console.warn("API_KEY non trovata. Assicurati di averla configurata su Vercel o Netlify.");
-        setLoadingMotto(false);
-        return;
-      }
-      
+      /* Assume process.env.API_KEY is pre-configured and valid per instructions */
       try {
         const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
         const response = await ai.models.generateContent({

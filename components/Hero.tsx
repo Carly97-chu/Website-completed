@@ -1,32 +1,7 @@
-
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, Linkedin, Brain, Code, Cpu, Workflow, Database, Globe, Activity, Sparkles } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
+import React from 'react';
+import { ArrowRight, Linkedin, Brain, Code, Cpu, Workflow, Database, Globe, Activity } from 'lucide-react';
 
 const Hero: React.FC = () => {
-  const [aiMotto, setAiMotto] = useState<string>("");
-  const [loadingMotto, setLoadingMotto] = useState<boolean>(true);
-
-  useEffect(() => {
-    const generateAiMotto = async () => {
-      /* Assume process.env.API_KEY is pre-configured and valid per instructions */
-      try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-        const response = await ai.models.generateContent({
-          model: 'gemini-3-flash-preview',
-          contents: "Crea un motto professionale di una sola riga (massimo 12 parole) per Carlotta Emiro, una Junior AI Automation Developer con un background in Antropologia. Deve essere d'impatto, moderno e riflettere l'unione tra umano e automazione. Rispondi solo con il motto.",
-        });
-        setAiMotto(response.text || "");
-      } catch (error) {
-        console.error("Errore nel recupero del motto AI:", error);
-      } finally {
-        setLoadingMotto(false);
-      }
-    };
-
-    generateAiMotto();
-  }, []);
-
   const scrollToPortfolio = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const element = document.getElementById('portfolio');
@@ -68,20 +43,6 @@ const Hero: React.FC = () => {
               <span className="text-lg opacity-80">Low-Code & Operations</span>
             </p>
           </div>
-
-          {/* AI Motto Display */}
-          {(aiMotto || loadingMotto) && (
-            <div className="flex items-start gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 max-w-lg animate-fade-in-up">
-              <Sparkles className={`w-5 h-5 text-sky-400 shrink-0 mt-0.5 ${loadingMotto ? 'animate-pulse' : ''}`} />
-              {loadingMotto ? (
-                <div className="h-4 w-48 bg-white/10 rounded animate-pulse"></div>
-              ) : (
-                <p className="text-sm text-slate-300 italic font-medium leading-relaxed">
-                  "{aiMotto}"
-                </p>
-              )}
-            </div>
-          )}
 
           <p className="text-slate-400 max-w-lg leading-relaxed text-lg">
             My journey began in Anthropology, but my curiosity quickly drove me beyond theory toward building concrete solutions. Today, I merge Data Analysis and n8n automation to solve real-world problems.
@@ -189,7 +150,6 @@ const Hero: React.FC = () => {
                   { name: "Python", icon: Code },
                   { name: "SQL", icon: Database },
                   { name: "Tableau", icon: Activity },
-                  { name: "Gemini AI", icon: Sparkles },
                   { name: "Web Scraping", icon: Globe },
                   { name: "Process Automation", icon: Cpu },
                 ].map((skill, i) => (

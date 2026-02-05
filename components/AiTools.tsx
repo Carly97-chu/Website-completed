@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ExternalLink, CheckCircle2, Globe, Sparkles, Search } from 'lucide-react';
 
@@ -6,8 +7,8 @@ const AiTools: React.FC = () => {
     {
       badge: "New Feature",
       title: "NGO Funding Matcher",
-      desc: "Sei una ONG in cerca di finanziamenti? Questo agente AI analizza la compatibilità tra un bando e la missione della tua organizzazione, generando report strategici istantanei.",
-      features: ["Analisi Istantanea", "Smart Matching"],
+      desc: "Are you an NGO looking for funding? This AI agent analyzes the compatibility between a call for proposals and your organization's mission, generating instant strategic reports.",
+      features: ["Instant Analysis", "Smart Matching"],
       link: "https://n8n.46.224.232.131.sslip.io/form/0d05b625-7ad0-450b-abf3-6d8d6a8dc5b9",
       color: "sky",
       icon: Sparkles
@@ -15,8 +16,8 @@ const AiTools: React.FC = () => {
     {
       badge: "AI Audit",
       title: "Website Health Check",
-      desc: "Audit your website in 30 seconds. Get a custom report identifying conversion killers and actionable fixes for your SEO and User Experience. Stop guessing, start optimizing",
-      features: ["UX Audit", "Suggerimenti SEO"],
+      desc: "Audit your website in 30 seconds. Get a custom report identifying conversion killers and actionable fixes for your SEO and User Experience. Stop guessing, start optimizing.",
+      features: ["UX Audit", "SEO Suggestions"],
       link: "https://n8n.46.224.232.131.sslip.io/form/f156e0b3-46ca-44c6-b80f-ae3b60cc9b66",
       color: "indigo",
       icon: Search

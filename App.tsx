@@ -12,10 +12,10 @@ const App: React.FC = () => {
   const [isProjectOpen, setIsProjectOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-slate-200 selection:bg-indigo-500/30 overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-slate-200 selection:bg-indigo-500/30 overflow-x-hidden relative">
       <Navbar isHidden={isProjectOpen} />
       
-      <main className="relative z-10">
+      <main className="relative z-10 pointer-events-auto">
         <section id="about">
           <Hero />
         </section>
@@ -35,13 +35,13 @@ const App: React.FC = () => {
 
       <Footer />
       
-      {/* Background ambient glows */}
-      <div className="fixed top-0 left-0 w-full h-full overflow-hidden -z-0 pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-900/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-sky-900/20 rounded-full blur-[100px]" />
+      {/* Background ambient glows - Truly sent to background with -z-10 */}
+      <div className="fixed inset-0 overflow-hidden -z-10 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-900/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[-5%] w-[30%] h-[30%] bg-sky-900/10 rounded-full blur-[100px]" />
       </div>
 
-      {/* AI Assistant Chat Widget */}
+      {/* AI Assistant Chat Widget - Topmost layer */}
       <ChatWidget />
     </div>
   );

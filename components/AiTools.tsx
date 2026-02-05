@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ExternalLink, CheckCircle2, Globe, Sparkles, Search } from 'lucide-react';
+import { ExternalLink, CheckCircle2, Sparkles, Search } from 'lucide-react';
 
 const AiTools: React.FC = () => {
   const tools = [
@@ -25,7 +25,7 @@ const AiTools: React.FC = () => {
   ];
 
   return (
-    <div className="py-32 px-6 relative overflow-hidden">
+    <div className="py-32 px-6 relative z-10">
       <div className="max-w-[90rem] mx-auto">
         <div className="text-center mb-24">
           <h2 className="text-4xl md:text-6xl font-black text-white mb-6">Try My AI Tools</h2>
@@ -38,35 +38,36 @@ const AiTools: React.FC = () => {
           {tools.map((tool, index) => (
             <div 
               key={index}
-              className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-[3rem] p-10 md:p-14 overflow-hidden group hover:border-sky-500/30 transition-all duration-500 flex flex-col h-full shadow-2xl"
+              className="relative group bg-white/5 backdrop-blur-xl border border-white/10 rounded-[3rem] p-8 md:p-14 overflow-hidden flex flex-col h-full shadow-2xl transition-all duration-300 hover:border-sky-500/40"
+              style={{ isolation: 'isolate' }}
             >
-              {/* Background Glow - Layer 0 */}
+              {/* Background Glow - Forced to Layer 0, pointer-events-none is vital */}
               <div 
-                className={`absolute top-0 right-0 z-0 w-[500px] h-[500px] ${tool.color === 'sky' ? 'bg-sky-500/10' : 'bg-indigo-500/10'} rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none group-hover:opacity-100 transition-opacity duration-500`}
+                className={`absolute top-0 right-0 z-0 w-[500px] h-[500px] ${tool.color === 'sky' ? 'bg-sky-500/10' : 'bg-indigo-500/10'} rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none opacity-60`}
                 aria-hidden="true"
               ></div>
 
-              {/* Content Wrapper - Layer 10 (Interactive) */}
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="space-y-8 flex-grow">
+              {/* Content Wrapper - Layer 20 */}
+              <div className="relative z-20 flex flex-col h-full pointer-events-auto">
+                <div className="space-y-6 md:space-y-8 flex-grow">
                   <div className={`inline-flex items-center gap-3 px-4 py-1.5 rounded-full ${tool.color === 'sky' ? 'bg-sky-500/10 border-sky-500/20 text-sky-400' : 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400'} border text-sm font-bold`}>
                     <span className="relative flex h-2.5 w-2.5">
-                      <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${tool.color === 'sky' ? 'bg-sky-400' : 'bg-indigo-400'} opacity-75`}></span>
-                      <span className={`relative inline-flex rounded-full h-2.5 w-2.5 ${tool.color === 'sky' ? 'bg-sky-500' : 'bg-indigo-500'}`}></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-current"></span>
                     </span>
                     {tool.badge}
                   </div>
                   
                   <div className="flex items-center gap-4">
                     <tool.icon className={`w-8 h-8 ${tool.color === 'sky' ? 'text-sky-400' : 'text-indigo-400'}`} />
-                    <h3 className="text-3xl md:text-4xl font-black text-white">{tool.title}</h3>
+                    <h3 className="text-2xl md:text-4xl font-black text-white">{tool.title}</h3>
                   </div>
                   
-                  <p className="text-slate-400 text-lg md:text-xl leading-relaxed font-light">
+                  <p className="text-slate-400 text-base md:text-xl leading-relaxed font-light">
                     {tool.desc}
                   </p>
 
-                  <div className="flex flex-wrap gap-6 text-sm text-slate-500 pt-4 mb-6">
+                  <div className="flex flex-wrap gap-4 md:gap-6 text-sm text-slate-500 pt-4 mb-6">
                     {tool.features.map((feature, fIndex) => (
                       <div key={fIndex} className="flex items-center gap-2.5">
                         <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -76,15 +77,17 @@ const AiTools: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Button Container - Layer 20 */}
-                <div className="pt-8">
+                {/* Button Area - Forced to highest layer z-[100] */}
+                <div className="pt-8 relative z-[100] pointer-events-auto">
                   <a 
                     href={tool.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`relative z-20 inline-flex items-center gap-3 px-10 py-4 rounded-2xl ${tool.color === 'sky' ? 'bg-gradient-to-r from-sky-600 to-indigo-600' : 'bg-gradient-to-r from-indigo-600 to-purple-600'} text-white text-lg font-bold hover:shadow-xl transition-all active:scale-[0.98] w-fit shadow-lg cursor-pointer`}
+                    className={`flex items-center justify-center gap-3 px-10 py-5 rounded-2xl ${tool.color === 'sky' ? 'bg-gradient-to-r from-sky-600 to-indigo-600' : 'bg-gradient-to-r from-indigo-600 to-purple-600'} text-white text-lg font-bold hover:shadow-xl hover:scale-[1.02] transition-all active:scale-95 w-full md:w-fit shadow-lg cursor-pointer touch-manipulation pointer-events-auto`}
+                    style={{ minHeight: '64px' }}
                   >
-                    Launch Tool <ExternalLink className="w-5 h-5" />
+                    <span>Launch Tool</span>
+                    <ExternalLink className="w-5 h-5 shrink-0" />
                   </a>
                 </div>
               </div>
